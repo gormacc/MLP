@@ -27,6 +27,8 @@ class NeuralNetwork:
         sigmoid = np.vectorize(lambda x : 1 / (1 + np.exp(-x)))
 
         inputLayer = np.matrix(inArray)
+        inputLayer = np.transpose(inputLayer)
+
         hiddenLayer = np.dot(self.firstWeights, inputLayer)
         hiddenLayer = np.add(hiddenLayer, self.firstBias)
         hiddenLayer = sigmoid(hiddenLayer)
@@ -57,10 +59,10 @@ class NeuralNetwork:
         outputLayer = sigmoid(outputLayer)
 
         secondErrors = np.subtract(correctAnswers, outputLayer)
-        secondErrors = np.transpose(secondErrors)
+        #secondErrors = np.transpose(secondErrors)  #??
 
         secondGradient = dsigmoid(outputLayer)
-        secondGradient = np.dot(secondGradient, secondErrors)
+        secondGradient = np.dot(secondErrors, secondGradient)
         secondGradient = np.multiply(secondGradient, self.learningRate)
 
         transposedHiddenLayer = np.transpose(hiddenLayer)
@@ -71,13 +73,12 @@ class NeuralNetwork:
 
         transposedSecondWeights = np.transpose(self.secondWeights)
         firstErrors = np.dot(transposedSecondWeights, secondErrors)
-        firstErrors = np.transpose(firstErrors)
 
         firstGradient = dsigmoid(hiddenLayer)
-        firstGradient = np.dot(firstGradient, firstErrors)
+        firstGradient = np.multiply(firstErrors, firstGradient)
         firstGradient = np.multiply(firstGradient, self.learningRate)
 
-        transposedInputLayer = inputLayer #np.transpose(inputLayer)
+        transposedInputLayer = np.transpose(inputLayer)
         deltaFirstWeights = np.dot(firstGradient, transposedInputLayer)
 
         self.firstWeights = np.add(self.firstWeights, deltaFirstWeights)
