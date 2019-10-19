@@ -1,3 +1,5 @@
+import numpy as np
+
 class Data:
 
     def __init__(self, line):
@@ -10,10 +12,9 @@ class Data:
         return [self.x, self.y]
 
     def correctResult(self):
-        if (self.cls == 1):
-            return [0, 1]
-        elif (self.cls == 2):
-            return [1, 0]
+        result = np.zeros(2).astype(int)
+        result[self.cls - 1] = 1
+        return result
 
     def __repr__(self):
         return '[%s, %s, %s]\n' % (self.x, self.y, self.cls)

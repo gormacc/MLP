@@ -1,6 +1,7 @@
 import numpy as np
 import NeuralNetwork as nn
 import FileHelper as fh
+import Data as dt
 
 fileHelper = fh.FileHelper()
 
@@ -8,10 +9,7 @@ data = fileHelper.LoadData()
 
 testData = fileHelper.LoadData()
 
-valDictionary = { (0,0) : [0], (0,1) : [1] , (1,0) : [1], (1,1) : [0] }
-trueDictionary = {True : 1, False : 0}
-
-neuralNetwork = nn.NeuralNetwork([2, 3, 5, 1])
+neuralNetwork = nn.NeuralNetwork([2, 3, 5, 2])
 
 for _ in range(0, 100):
     for d in data:
