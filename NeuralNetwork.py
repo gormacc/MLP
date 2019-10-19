@@ -1,89 +1,78 @@
 import numpy as np
 
+
 class NeuralNetwork:
 
-    def __init__(self, inputNodes, hiddenNodes, outputNodes):
-        
-        self.inputNodes = inputNodes
-        self.hiddenNodes = hiddenNodes
-        self.outputNodes = outputNodes
+    def __init__(self, nodesList):
 
-        self.firstWeights = self.initializeWeights(self.hiddenNodes, self.inputNodes)
-        self.secondWeights = self.initializeWeights(self.outputNodes, self.hiddenNodes)
+        self.nodes = nodesList
+        self.numberOfLayers = len(nodesList)
 
-        self.firstBias = self.initializeWeights(self.hiddenNodes, 1)
-        self.secondBias = self.initializeWeights(self.outputNodes, 1)
+        self.weights = []
+        self.biases = []
+        for i in range(1, self.numberOfLayers):
+            self.weights.append(self.initializeWeights(nodesList[i], nodesList[i-1]))
+            self.biases.append(self.initializeWeights(nodesList[i], 1))
 
         self.setLearningRate()
 
     def initializeWeights(self, rows, columns):
-        return np.matrix(np.random.rand(rows, columns) * 2 - 1)
+        return np.matrix(np.random.rand(rows, columns) * 4 - 2)
 
-    def setLearningRate(self, learningRate = 0.2):
+    def setLearningRate(self, learningRate=0.2):
         self.learningRate = learningRate
 
     def predict(self, inArray):
 
-        sigmoid = np.vectorize(lambda x : 1 / (1 + np.exp(-x)))
+        sigmoid = np.vectorize(lambda x: 1 / (1 + np.exp(-x)))
 
         inputLayer = np.matrix(inArray)
         inputLayer = np.transpose(inputLayer)
 
-        hiddenLayer = np.dot(self.firstWeights, inputLayer)
-        hiddenLayer = np.add(hiddenLayer, self.firstBias)
-        hiddenLayer = sigmoid(hiddenLayer)
+        layers = [inputLayer]
 
-        outputLayer = np.dot(self.secondWeights, hiddenLayer)
-        outputLayer = np.add(outputLayer, self.secondBias)
-        outputLayer = sigmoid(outputLayer)
+        for i in range(self.numberOfLayers - 1):
+            layers.append(self.calculateLayer(layers[-1], i, sigmoid))
 
-        return outputLayer
-
+        return layers[-1]
 
     def train(self, inArray, corrArray):
 
-        sigmoid = np.vectorize(lambda x : 1 / (1 + np.exp(-x)))
-        dsigmoid = np.vectorize(lambda x : x * (1 - x))
+        sigmoid = np.vectorize(lambda x: 1 / (1 + np.exp(-x)))
+        dsigmoid = np.vectorize(lambda x: x * (1 - x))
 
         inputLayer = np.matrix(inArray)
         inputLayer = np.transpose(inputLayer)
         correctAnswers = np.matrix(corrArray)
         correctAnswers = np.transpose(correctAnswers)
 
-        hiddenLayer = np.dot(self.firstWeights, inputLayer)
-        hiddenLayer = np.add(hiddenLayer, self.firstBias)
-        hiddenLayer = sigmoid(hiddenLayer)
+        layers = [inputLayer]
+        for i in range(self.numberOfLayers - 1):
+            layers.append(self.calculateLayer(layers[-1], i, sigmoid))
 
-        outputLayer = np.dot(self.secondWeights, hiddenLayer)
-        outputLayer = np.add(outputLayer, self.secondBias)
-        outputLayer = sigmoid(outputLayer)
+        errors = np.subtract(correctAnswers, layers[-1])
+        # secondErrors = np.transpose(lastErrors)  #??
 
-        secondErrors = np.subtract(correctAnswers, outputLayer)
-        #secondErrors = np.transpose(secondErrors)  #??
+        self.recalculateWeights(errors, layers[-1], layers[-2], self.numberOfLayers-2, dsigmoid)
 
-        secondGradient = dsigmoid(outputLayer)
-        secondGradient = np.dot(secondErrors, secondGradient)
-        secondGradient = np.multiply(secondGradient, self.learningRate)
+        for i in range(self.numberOfLayers - 2, 0, -1):
+            transposedWeights = np.transpose(self.weights[i])
+            errors = np.dot(transposedWeights, errors)
 
-        transposedHiddenLayer = np.transpose(hiddenLayer)
-        deltaSecondWeights = np.dot(secondGradient, transposedHiddenLayer)
+            self.recalculateWeights(errors, layers[i], layers[i-1], i-1, dsigmoid)
 
-        self.secondWeights = np.add(self.secondWeights, deltaSecondWeights)
-        self.secondBias = np.add(self.secondBias, secondGradient)
+    def recalculateWeights(self, errors, currentLayer, prevLayer, index, fun):
+        gradient = fun(currentLayer)
+        gradient = np.multiply(errors, gradient)
+        gradient = np.multiply(gradient, self.learningRate)
 
-        transposedSecondWeights = np.transpose(self.secondWeights)
-        firstErrors = np.dot(transposedSecondWeights, secondErrors)
+        transposedPrevLayer = np.transpose(prevLayer)
+        deltaSecondWeights = np.dot(gradient, transposedPrevLayer)
 
-        firstGradient = dsigmoid(hiddenLayer)
-        firstGradient = np.multiply(firstErrors, firstGradient)
-        firstGradient = np.multiply(firstGradient, self.learningRate)
+        self.weights[index] = np.add(self.weights[index], deltaSecondWeights)
+        self.biases[index] = np.add(self.biases[index], gradient)
 
-        transposedInputLayer = np.transpose(inputLayer)
-        deltaFirstWeights = np.dot(firstGradient, transposedInputLayer)
-
-        self.firstWeights = np.add(self.firstWeights, deltaFirstWeights)
-        self.firstBias = np.add(self.firstBias, firstGradient)
-
-
-
-
+    def calculateLayer(self, prevLayer, index, fun):
+        layer = np.dot(self.weights[index], prevLayer)
+        layer = np.add(layer, self.biases[index])
+        return fun(layer)
