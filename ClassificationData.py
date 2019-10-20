@@ -1,6 +1,6 @@
 import numpy as np
 
-class Data:
+class ClassificationData:
 
     def __init__(self, line):
         lineSplitted = line.rstrip().split(',')
