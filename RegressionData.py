@@ -12,7 +12,7 @@ class RegressionData:
         return [self.y]
 
     def __repr__(self):
-        return '[%s, %s, %s]\n' % (self.x, self.y)
+        return '[%s, %s]\n' % (self.x, self.y)
 
     def __str__(self):
         return "[" + self.x + ", " + self.y + "]"

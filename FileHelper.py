@@ -5,12 +5,13 @@ from tkinter import filedialog
 
 class FileHelper:
 
-    def LoadClassificationData(self):
+    def LoadClassificationData(self, filePath = None):
         root = tk.Tk()
         root.withdraw()
 
-        file_path = filedialog.askopenfilename()
-        return self.ParseClassificationFile(file_path)
+        if filePath == None:
+            filePath = filedialog.askopenfilename()
+        return self.ParseClassificationFile(filePath)
 
     def ParseClassificationFile(self, filepath):
         data = []
@@ -22,12 +23,13 @@ class FileHelper:
                 line = fp.readline()
         return data
 
-    def LoadRegressionData(self):
+    def LoadRegressionData(self, filePath = None):
         root = tk.Tk()
         root.withdraw()
 
-        file_path = filedialog.askopenfilename()
-        return self.ParseRegressionFile(file_path)
+        if filePath == None:
+            filePath = filedialog.askopenfilename()
+        return self.ParseRegressionFile(filePath)
 
     def ParseRegressionFile(self, filepath):
         data = []
