@@ -37,8 +37,10 @@ class NeuralNetwork:
 
         layers = [inputLayer]
 
-        for i in range(self.numberOfLayers - 1):
+        for i in range(self.numberOfLayers - 2):
             layers.append(self.calculateLayer(layers[-1], i, self.activationFunction))
+
+        layers.append(self.calculateLayer(layers[-1], self.numberOfLayers-2, lambda x : x))
 
         return layers[-1]
 
@@ -50,11 +52,14 @@ class NeuralNetwork:
         correctAnswers = np.transpose(correctAnswers)
 
         layers = [inputLayer]
-        for i in range(self.numberOfLayers - 1):
+        for i in range(self.numberOfLayers - 2):
             layers.append(self.calculateLayer(layers[-1], i, self.activationFunction))
 
+        layers.append(self.calculateLayer(layers[-1], self.numberOfLayers-2, lambda x : x))
+
         errors = np.subtract(correctAnswers, layers[-1])
-        self.recalculateWeights(errors, layers[-1], layers[-2], self.numberOfLayers-2, self.deactivationFunction)
+        # errors = self.activationFunction(errors)        
+        self.recalculateWeights(errors, layers[-1], layers[-2], self.numberOfLayers-2, lambda x : 1)
 
         for i in range(self.numberOfLayers - 2, 0, -1):
             transposedWeights = np.transpose(self.weights[i])
@@ -63,7 +68,6 @@ class NeuralNetwork:
             self.recalculateWeights(errors, layers[i], layers[i-1], i-1, self.deactivationFunction)
 
     def recalculateWeights(self, errors, currentLayer, prevLayer, index, fun):
-        
         gradient = fun(currentLayer)
         gradient = np.multiply(errors, gradient)
         gradient = np.multiply(gradient, self.learningRate)
