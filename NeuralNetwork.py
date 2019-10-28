@@ -23,7 +23,6 @@ class NeuralNetwork:
         self.setMidDeactivationFun(lambda x: x * (1 - x))
         self.setEndActivationFun(lambda x: 1 / (1 + np.exp(-x)))
         self.setEndDeactivationFun(lambda x: x * (1 - x))
-        self.setLossFunction(lambda c,p : np.subtract(c,p))
 
     def initializeWeights(self, rows, columns):
         return np.matrix(np.random.rand(rows, columns) * 2 - 1)
@@ -39,9 +38,6 @@ class NeuralNetwork:
 
     def setEndDeactivationFun(self, deactivationFunction):
         self.endDeactivationFun = np.vectorize(deactivationFunction)
-
-    def setLossFunction(self, lossFunction):
-        self.lossFunction = lossFunction
 
     def predict(self, inArray):
         #prepare input values
@@ -64,7 +60,7 @@ class NeuralNetwork:
         #calculate layers values
         layers = self.predict(inArray)
         #calculate error array using error function
-        errors = self.lossFunction(correctAnswers, layers[-1])
+        errors = np.subtract(correctAnswers, layers[-1])
         #calculate last weights matrix
         self.recalculateWeights(errors, layers[-1], layers[-2], self.numberOfLayers-2, self.endDeactivationFun)
         #calculate rest weights matrices 
@@ -74,6 +70,7 @@ class NeuralNetwork:
             errors = np.dot(transposedWeights, errors)
             #calculate weight matrix
             self.recalculateWeights(errors, layers[i], layers[i-1], i-1, self.midDeactivationFun)
+        return layers[-1]
 
     def recalculateWeights(self, errors, currentLayer, prevLayer, index, fun):
         #calculate gradient
