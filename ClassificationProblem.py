@@ -35,20 +35,30 @@ neuralNetwork.setMidDeactivationFun(midDeactivationFun)
 neuralNetwork.setEndActivationFun(endActivationFun)
 neuralNetwork.setEndDeactivationFun(endDeactivationFun)
 
+errors = []
+errSum = 0
 #training
 for _ in range(0, trainLoops):
     for d in data:
-        neuralNetwork.train(d.inputData(), d.correctResult())
+        predicted = neuralNetwork.train(d.inputData(), d.correctResult(nodes[-1]))
+        if d.cls != predicted.argmax() + 1:
+            errSum = errSum + 1
+        errors.append(errSum / (len(errors)+1))
 
-# x = []
-# y = []
-# c = []
+pCls = []
 
-# #visualizaton
-# for d in testData:
-#     x.append(d.x)
-#     y.append(d.y)
-#     c.append(d.cls)
+for d in testData:
+    p = neuralNetwork.predict(d.inputData())[-1]
+    c = p.argmax() + 1
+    pCls.append(c)
 
-# plt.scatter(x,y,c)
-# plt.show()
+colors = {1:'r', 2:'g', 3:'b'}
+fig, ax = plt.subplots()
+for i in range(len(testData)):
+    ax.scatter(testData[i].x, testData[i].y,color=colors[pCls[i]])
+
+plt.show()
+
+plt.plot(range(1, len(errors)+1), errors)
+
+plt.show()

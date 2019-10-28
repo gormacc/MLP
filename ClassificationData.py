@@ -11,8 +11,8 @@ class ClassificationData:
     def inputData(self):
         return [self.x, self.y]
 
-    def correctResult(self):
-        result = np.zeros(2).astype(int)
+    def correctResult(self, vectorLength):
+        result = np.zeros(vectorLength).astype(int)
         result[self.cls - 1] = 1
         return result
 
