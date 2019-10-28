@@ -1,78 +1,97 @@
 import numpy as np
 
-
 class NeuralNetwork:
 
-    def __init__(self, nodesList):
+    def __init__(self, nodesList, learningRate, useBiases, seed):
 
         self.nodes = nodesList
         self.numberOfLayers = len(nodesList)
+        self.learningRate = learningRate
+        self.useBiases = useBiases
 
+        #initialize weights and biases if needed
+        np.random.seed(seed) 
         self.weights = []
         self.biases = []
         for i in range(1, self.numberOfLayers):
             self.weights.append(self.initializeWeights(nodesList[i], nodesList[i-1]))
-            self.biases.append(self.initializeWeights(nodesList[i], 1))
+            if useBiases:
+                self.biases.append(self.initializeWeights(nodesList[i], 1))
 
-        self.setLearningRate()
+        #set default functions
+        self.setMidActivationFun(lambda x: 1 / (1 + np.exp(-x)))
+        self.setMidDeactivationFun(lambda x: x * (1 - x))
+        self.setEndActivationFun(lambda x: 1 / (1 + np.exp(-x)))
+        self.setEndDeactivationFun(lambda x: x * (1 - x))
+        self.setLossFunction(lambda c,p : np.subtract(c,p))
 
     def initializeWeights(self, rows, columns):
-        return np.matrix(np.random.rand(rows, columns) * 4 - 2)
+        return np.matrix(np.random.rand(rows, columns) * 2 - 1)
 
-    def setLearningRate(self, learningRate=0.2):
-        self.learningRate = learningRate
+    def setMidActivationFun(self, activationFunction):
+        self.midActivationFun = np.vectorize(activationFunction)
+
+    def setMidDeactivationFun(self, deactivationFunction):
+        self.midDeactivationFun = np.vectorize(deactivationFunction)
+
+    def setEndActivationFun(self, activationFunction):
+        self.endActivationFun = np.vectorize(activationFunction)
+
+    def setEndDeactivationFun(self, deactivationFunction):
+        self.endDeactivationFun = np.vectorize(deactivationFunction)
+
+    def setLossFunction(self, lossFunction):
+        self.lossFunction = lossFunction
 
     def predict(self, inArray):
-
-        sigmoid = np.vectorize(lambda x: 1 / (1 + np.exp(-x)))
-
+        #prepare input values
         inputLayer = np.matrix(inArray)
         inputLayer = np.transpose(inputLayer)
-
+        #set layers array
         layers = [inputLayer]
+        #calculate middle layers
+        for i in range(self.numberOfLayers - 2):
+            layers.append(self.calculateLayer(layers[-1], i, self.midActivationFun))
+        #calculate last layer
+        layers.append(self.calculateLayer(layers[-1], self.numberOfLayers-2, self.endActivationFun))
 
-        for i in range(self.numberOfLayers - 1):
-            layers.append(self.calculateLayer(layers[-1], i, sigmoid))
-
-        return layers[-1]
+        return layers
 
     def train(self, inArray, corrArray):
-
-        sigmoid = np.vectorize(lambda x: 1 / (1 + np.exp(-x)))
-        dsigmoid = np.vectorize(lambda x: x * (1 - x))
-
-        inputLayer = np.matrix(inArray)
-        inputLayer = np.transpose(inputLayer)
+        #prepare correct values
         correctAnswers = np.matrix(corrArray)
         correctAnswers = np.transpose(correctAnswers)
-
-        layers = [inputLayer]
-        for i in range(self.numberOfLayers - 1):
-            layers.append(self.calculateLayer(layers[-1], i, sigmoid))
-
-        errors = np.subtract(correctAnswers, layers[-1])
-        # secondErrors = np.transpose(lastErrors)  #??
-
-        self.recalculateWeights(errors, layers[-1], layers[-2], self.numberOfLayers-2, dsigmoid)
-
+        #calculate layers values
+        layers = self.predict(inArray)
+        #calculate error array using error function
+        errors = self.lossFunction(correctAnswers, layers[-1])
+        #calculate last weights matrix
+        self.recalculateWeights(errors, layers[-1], layers[-2], self.numberOfLayers-2, self.endDeactivationFun)
+        #calculate rest weights matrices 
         for i in range(self.numberOfLayers - 2, 0, -1):
+            #calculate propagated error
             transposedWeights = np.transpose(self.weights[i])
             errors = np.dot(transposedWeights, errors)
-
-            self.recalculateWeights(errors, layers[i], layers[i-1], i-1, dsigmoid)
+            #calculate weight matrix
+            self.recalculateWeights(errors, layers[i], layers[i-1], i-1, self.midDeactivationFun)
 
     def recalculateWeights(self, errors, currentLayer, prevLayer, index, fun):
+        #calculate gradient
         gradient = fun(currentLayer)
         gradient = np.multiply(errors, gradient)
         gradient = np.multiply(gradient, self.learningRate)
-
+        #calculate delta
         transposedPrevLayer = np.transpose(prevLayer)
-        deltaSecondWeights = np.dot(gradient, transposedPrevLayer)
-
-        self.weights[index] = np.add(self.weights[index], deltaSecondWeights)
-        self.biases[index] = np.add(self.biases[index], gradient)
+        deltaWeights = np.dot(gradient, transposedPrevLayer)
+        #actualize weights and biases if needed
+        self.weights[index] = np.add(self.weights[index], deltaWeights)
+        if self.useBiases: 
+            self.biases[index] = np.add(self.biases[index], gradient)
 
     def calculateLayer(self, prevLayer, index, fun):
+        #calculate layer value and biases if needed
         layer = np.dot(self.weights[index], prevLayer)
-        layer = np.add(layer, self.biases[index])
+        if self.useBiases:
+             layer = np.add(layer, self.biases[index])
+
         return fun(layer)
