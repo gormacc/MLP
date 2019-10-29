@@ -51,7 +51,7 @@ x = []
 y = []
 yp = []
 
-for d in testData:
+for d in sorted(testData, key = lambda td: td.x):
     x.append(d.x)
     y.append(d.y)
     yp.append(neuralNetwork.predict(d.inputData())[-1].item(0))
