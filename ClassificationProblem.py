@@ -25,8 +25,13 @@ testDataPath = "C:/Users/macie/Desktop/studia/SieciNeuronowe/MLP/SN_projekt1/cla
 
 #loading data
 fileHelper = fh.FileHelper()
-data = fileHelper.LoadClassificationData(trainDataPath)
-testData = fileHelper.LoadClassificationData(testDataPath)
+# data = fileHelper.LoadClassificationData(trainDataPath)
+# testData = fileHelper.LoadClassificationData(testDataPath)
+data = fileHelper.LoadClassificationData()
+testData = fileHelper.LoadClassificationData()
+
+maxCls = max(data, key= lambda x: x.cls).cls
+nodes = [2,7,maxCls]
 
 #initializing neural network
 neuralNetwork = nn.NeuralNetwork(nodes, learningRate, useBiases, seed)
@@ -52,7 +57,7 @@ for d in testData:
     c = p.argmax() + 1
     pCls.append(c)
 
-colors = {1:'r', 2:'g', 3:'b'}
+colors = {1:'red', 2:'green', 3:'blue', 4:'yellow'}
 fig, ax = plt.subplots()
 for i in range(len(testData)):
     ax.scatter(testData[i].x, testData[i].y,color=colors[pCls[i]])

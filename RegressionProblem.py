@@ -25,8 +25,10 @@ testDataPath = "C:/Users/macie/Desktop/studia/SieciNeuronowe/MLP/SN_projekt1/reg
 
 #loading data
 fileHelper = fh.FileHelper()
-data = fileHelper.LoadRegressionData(trainDataPath)
-testData = fileHelper.LoadRegressionData(testDataPath)
+# data = fileHelper.LoadRegressionData(trainDataPath)
+# testData = fileHelper.LoadRegressionData(testDataPath)
+data = fileHelper.LoadRegressionData()
+testData = fileHelper.LoadRegressionData()
 
 #initializing neural network
 neuralNetwork = nn.NeuralNetwork(nodes, learningRate, useBiases, seed)
