@@ -16,7 +16,7 @@ midActivationFun = f.sigmoid
 endActivationFun = f.sigmoid
 midDeactivationFun = f.dsigmoid
 endDeactivationFun = f.dsigmoid
-lossFun = f.crossEntropy
+lossFun = f.meanSquareErrorDerivative
 
 #data paths
 
@@ -39,6 +39,7 @@ neuralNetwork.setMidActivationFun(midActivationFun)
 neuralNetwork.setMidDeactivationFun(midDeactivationFun)
 neuralNetwork.setEndActivationFun(endActivationFun)
 neuralNetwork.setEndDeactivationFun(endDeactivationFun)
+neuralNetwork.setLossFunction(lossFun)
 
 errors = []
 errSum = 0

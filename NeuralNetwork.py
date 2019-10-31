@@ -39,6 +39,9 @@ class NeuralNetwork:
     def setEndDeactivationFun(self, deactivationFunction):
         self.endDeactivationFun = np.vectorize(deactivationFunction)
 
+    def setLossFunction(self, lossFunction):
+        self.lossFunction = np.vectorize(lossFunction)
+
     def predict(self, inArray):
         #prepare input values
         inputLayer = np.matrix(inArray)
@@ -60,7 +63,7 @@ class NeuralNetwork:
         #calculate layers values
         layers = self.predict(inArray)
         #calculate error array using error function
-        errors = np.subtract(correctAnswers, layers[-1])
+        errors = self.lossFunction(correctAnswers, layers[-1])
         #calculate last weights matrix
         self.recalculateWeights(errors, layers[-1], layers[-2], self.numberOfLayers-2, self.endDeactivationFun)
         #calculate rest weights matrices 

@@ -36,39 +36,31 @@ def dlinear(x):
 
 #loss functions
 
-def differenceError(c, p):
-    return np.subtract(c, p)
-
 #regression 
 
 def meanSquareError(c, p):
-    diff = differenceError(c,p)
-    power = np.power(diff, 2)
-    sumV = np.sum(power)
-    return sumV / len(c)
+    0.5 * np.sum(np.square(np.subtract(c,p)))
 
-def absoluteError(c, p):
-    diff = differenceError(c,p)
-    absolute = np.abs(diff)
-    sumV = np.sum(absolute)
-    return sumV / len(c)
+def meanSquareErrorDerivative(c, p):
+    return np.subtract(c, p)
 
-def smoothAbsoluteError(c, p):
-    diff = differenceError(c,p)
-    absolute = np.abs(diff)
-    sum = 0
-    for elem in absolute:
-        if elem < 1:
-            sum += 0.5 * np.power(elem, 2)
-        else:
-            sum += (elem - 0.5)
-    return sum
+def logCosh(c, p):
+    return np.sum(np.log(np.cosh(np.subtract(p, c))))
+
+def logCoshDerivative(c, p):
+    return np.tanh(np.subtract(p, c))
+
 
 #classification
 
 def crossEntropy(c, p):
-    epsilon = 1e-12
-    p = np.clip(p, epsilon, 1. - epsilon)
-    N = p.shape[0]
-    ce = -np.sum( np.multiply( c, np.log(p) ) ) / N
-    return ce
+    return -np.sum( np.multiply( c, np.log(p) ) )
+
+def crossEntropyDerivative(c,p):
+    return -np.divide(c,p)
+
+def absoluteError(c, p):
+    return np.sum(np.abs(np.subtract(c, p)))
+
+def absoluteErrorDerivative(c, p):
+    return (p>=c)*2 - 1
