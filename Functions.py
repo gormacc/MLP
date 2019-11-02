@@ -57,7 +57,7 @@ def crossEntropy(c, p):
     return -np.sum( np.multiply( c, np.log(p) ) )
 
 def crossEntropyDerivative(c,p):
-    return -np.divide(c,p)
+    return np.divide( np.exp(p) , np.sum(np.exp(p)) ) - c
 
 def absoluteError(c, p):
     return np.sum(np.abs(np.subtract(c, p)))
