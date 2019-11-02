@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 #values to configure
 
-nodes = [1,5 , 13,1]
+nodes = [1,13,1]
 seed = 1
 learningRate = 0.001
 useBiases = False
@@ -73,7 +73,7 @@ plt.legend()
 
 plt.figure(2)
 plt.plot(xtrain, yptrain, 'ob', label = 'Predicted data')
-plt.plot(xtrain, ytrain, 'or', label = 'Correct data')
+plt.plot(xtrain, ytrain, 'r', label = 'Correct data')
 plt.title('Prediction on train set')
 plt.legend()
 
