@@ -64,7 +64,7 @@ for j in range (0, len(seeds)):
         for _ in range(0, trainLoops):
             for d in trainData:
                 predicted = neuralNetwork.train(
-                    d.inputData(), d.correctResult(nodes[-1]))
+                    d.inputData(), d.correctResult())
 
         sumOfErrors = 0
         
@@ -78,5 +78,6 @@ for j in range (0, len(seeds)):
 for i in range(0, len(errors)):
     errors[i] = errors[i]/len(seeds)
 
-# print(seeds)
+print(trainDataPath)
+print(testDataPath)
 print(np.round(errors, 2))
