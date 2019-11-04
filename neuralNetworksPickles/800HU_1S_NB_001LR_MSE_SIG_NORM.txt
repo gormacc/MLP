@@ -1,0 +1,47 @@
+tested TL0 : 9289/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_1TL.pickle
+tested TL1 : 9455/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_2TL.pickle
+tested TL2 : 9533/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_3TL.pickle
+tested TL3 : 9582/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_4TL.pickle
+tested TL4 : 9615/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_5TL.pickle
+tested TL5 : 9632/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_6TL.pickle
+tested TL6 : 9652/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_7TL.pickle
+tested TL7 : 9663/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_8TL.pickle
+tested TL8 : 9664/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_9TL.pickle
+tested TL9 : 9671/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_10TL.pickle
+tested TL10 : 9682/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_11TL.pickle
+tested TL11 : 9687/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_12TL.pickle
+tested TL12 : 9690/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_13TL.pickle
+tested TL13 : 9692/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_14TL.pickle
+tested TL14 : 9691/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_15TL.pickle
+tested TL15 : 9698/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_16TL.pickle
+tested TL16 : 9698/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_17TL.pickle
+tested TL17 : 9703/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_18TL.pickle
+tested TL18 : 9709/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_19TL.pickle
+tested TL19 : 9713/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_20TL.pickle
+tested TL20 : 9709/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_21TL.pickle
+tested TL21 : 9707/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_22TL.pickle
+tested TL22 : 9713/10000
+serialized : neuralNetworksPickles/800HU_1S_NB_001LR_MSE_SIG_NORM_23TL.pickle
+tested TL23 : 9704/10000

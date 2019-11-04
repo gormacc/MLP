@@ -1,0 +1,106 @@
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_0TL.pickle
+tested TL0 : 6748/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_1TL.pickle
+tested TL1 : 7203/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_2TL.pickle
+tested TL2 : 7756/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_3TL.pickle
+tested TL3 : 7761/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_4TL.pickle
+tested TL4 : 7830/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_5TL.pickle
+tested TL5 : 7808/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_6TL.pickle
+tested TL6 : 7653/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_7TL.pickle
+tested TL7 : 8065/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_8TL.pickle
+tested TL8 : 7810/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_9TL.pickle
+tested TL9 : 7977/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_10TL.pickle
+tested TL10 : 8131/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_11TL.pickle
+tested TL11 : 8081/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_12TL.pickle
+tested TL12 : 7983/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_13TL.pickle
+tested TL13 : 7973/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_14TL.pickle
+tested TL14 : 7864/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_15TL.pickle
+tested TL15 : 7980/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_16TL.pickle
+tested TL16 : 7909/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_17TL.pickle
+tested TL17 : 8154/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_18TL.pickle
+tested TL18 : 7755/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_19TL.pickle
+tested TL19 : 8188/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_20TL.pickle
+tested TL20 : 7601/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_21TL.pickle
+tested TL21 : 7884/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_22TL.pickle
+tested TL22 : 8124/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_23TL.pickle
+tested TL23 : 7737/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_24TL.pickle
+tested TL24 : 8066/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_25TL.pickle
+tested TL25 : 8058/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_26TL.pickle
+tested TL26 : 8205/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_27TL.pickle
+tested TL27 : 7814/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_28TL.pickle
+tested TL28 : 7636/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_29TL.pickle
+tested TL29 : 7614/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_30TL.pickle
+tested TL30 : 7870/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_31TL.pickle
+tested TL31 : 7947/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_32TL.pickle
+tested TL32 : 7792/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_33TL.pickle
+tested TL33 : 8029/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_34TL.pickle
+tested TL34 : 8019/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_35TL.pickle
+tested TL35 : 8190/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_36TL.pickle
+tested TL36 : 8227/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_37TL.pickle
+tested TL37 : 8299/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_38TL.pickle
+tested TL38 : 7973/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_39TL.pickle
+tested TL39 : 8077/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_40TL.pickle
+tested TL40 : 7965/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_41TL.pickle
+tested TL41 : 8069/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_42TL.pickle
+tested TL42 : 8103/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_43TL.pickle
+tested TL43 : 8208/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_44TL.pickle
+tested TL44 : 8339/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_45TL.pickle
+tested TL45 : 8297/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_46TL.pickle
+tested TL46 : 8170/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_47TL.pickle
+tested TL47 : 8064/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_48TL.pickle
+tested TL48 : 7755/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_49TL.pickle
+tested TL49 : 8252/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_50TL.pickle
+tested TL50 : 8318/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_51TL.pickle
+tested TL51 : 8250/10000
+serialized : neuralNetworksPickles/1000HU_1S_B_001LR_MSE_SIG_52TL.pickle
+tested TL52 : 8147/10000

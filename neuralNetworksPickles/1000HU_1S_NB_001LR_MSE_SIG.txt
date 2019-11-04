@@ -1,0 +1,12 @@
+serialized : neuralNetworksPickles/1000HU_1S_NB_001LR_MSE_SIG_0TL.pickle
+tested TL0 : 7240/10000
+serialized : neuralNetworksPickles/1000HU_1S_NB_001LR_MSE_SIG_1TL.pickle
+tested TL1 : 7653/10000
+serialized : neuralNetworksPickles/1000HU_1S_NB_001LR_MSE_SIG_2TL.pickle
+tested TL2 : 7611/10000
+serialized : neuralNetworksPickles/1000HU_1S_NB_001LR_MSE_SIG_3TL.pickle
+tested TL3 : 7855/10000
+serialized : neuralNetworksPickles/1000HU_1S_NB_001LR_MSE_SIG_4TL.pickle
+tested TL4 : 7749/10000
+serialized : neuralNetworksPickles/1000HU_1S_NB_001LR_MSE_SIG_5TL.pickle
+tested TL5 : 7719/10000
