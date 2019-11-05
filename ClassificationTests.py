@@ -20,15 +20,8 @@ midDeactivationFunList = [f.dsigmoid, f.dtanh, f.drelu, f.dlinear]
 endDeactivationFunList = [f.dsigmoid, f.dtanh, f.dsigmoid, f.dsigmoid]
 lossFun = f.meanSquareErrorDerivative
 
-# data paths
-
-trainDataPath = "C:/Users/Karol/Desktop/ProjOB/SN/SN_projekt1/classification/data.simple.train.500.csv"
-testDataPath = "C:/Users/Karol/Desktop/ProjOB/SN/SN_projekt1/classification/data.simple.test.500.csv"
-
 # loading data
 fileHelper = fh.FileHelper()
-# data = fileHelper.LoadClassificationData(trainDataPath)
-# testData = fileHelper.LoadClassificationData(testDataPath)
 trainData = fileHelper.LoadClassificationData()
 testData = fileHelper.LoadClassificationData()
 

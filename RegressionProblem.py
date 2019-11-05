@@ -6,11 +6,11 @@ import matplotlib.pyplot as plt
 
 #values to configure
 
-nodes = [1,13,1]
+nodes = [1,10,10,1]
 seed = 1
 learningRate = 0.001
-useBiases = False
-trainLoops = 100
+useBiases = True
+trainLoops = 30
 
 midActivationFun = f.sigmoid
 endActivationFun = f.linear
@@ -18,15 +18,8 @@ midDeactivationFun = f.dsigmoid
 endDeactivationFun = f.dlinear
 lossFun = f.meanSquareErrorDerivative
 
-#data paths
-
-trainDataPath = "C:/Users/macie/Desktop/studia/SieciNeuronowe/MLP/SN_projekt1/regression/data.activation.train.100.csv"
-testDataPath = "C:/Users/macie/Desktop/studia/SieciNeuronowe/MLP/SN_projekt1/regression/data.activation.test.100.csv"
-
 #loading data
 fileHelper = fh.FileHelper()
-# data = fileHelper.LoadRegressionData(trainDataPath)
-# testData = fileHelper.LoadRegressionData(testDataPath)
 trainData = fileHelper.LoadRegressionData()
 testData = fileHelper.LoadRegressionData()
 

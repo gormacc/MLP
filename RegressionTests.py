@@ -13,17 +13,10 @@ trainLoops = 20
 
 seeds = [253, 124, 951, 536, 938]
 
-# data paths
-
-trainDataPath = "C:/Users/macie/Desktop/studia/SieciNeuronowe/MLP/SN_projekt1/regression/data.activation.train.100.csv"
-testDataPath = "C:/Users/macie/Desktop/studia/SieciNeuronowe/MLP/SN_projekt1/regression/data.activation.test.100.csv"
-
 # loading data
 fileHelper = fh.FileHelper()
-trainData = fileHelper.LoadRegressionData(trainDataPath)
-testData = fileHelper.LoadRegressionData(testDataPath)
-# trainData = fileHelper.LoadClassificationData()
-# testData = fileHelper.LoadClassificationData()
+trainData = fileHelper.LoadClassificationData()
+testData = fileHelper.LoadClassificationData()
 
 midActivationFun = f.sigmoid
 endActivationFun = f.linear
@@ -78,6 +71,4 @@ for j in range (0, len(seeds)):
 for i in range(0, len(errors)):
     errors[i] = errors[i]/len(seeds)
 
-print(trainDataPath)
-print(testDataPath)
 print(np.round(errors, 2))

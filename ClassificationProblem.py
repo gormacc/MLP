@@ -8,8 +8,8 @@ import matplotlib.pyplot as plt
 
 seed = 1
 learningRate = 0.1
-useBiases = False
-trainLoops = 100
+useBiases = True
+trainLoops = 30
 
 midActivationFun = f.sigmoid
 endActivationFun = f.sigmoid
@@ -17,20 +17,13 @@ midDeactivationFun = f.dsigmoid
 endDeactivationFun = f.dsigmoid
 lossFun = f.meanSquareErrorDerivative
 
-#data paths
-
-trainDataPath = "C:/Users/Karol/Desktop/ProjOB/SN/SN_projekt1/classification/data.simple.train.500.csv"
-testDataPath = "C:/Users/Karol/Desktop/ProjOB/SN/SN_projekt1/classification/data.simple.test.500.csv"
-
 #loading data
 fileHelper = fh.FileHelper()
-# data = fileHelper.LoadClassificationData(trainDataPath)
-# testData = fileHelper.LoadClassificationData(testDataPath)
 trainData = fileHelper.LoadClassificationData()
 testData = fileHelper.LoadClassificationData()
 
 maxCls = max(trainData, key= lambda x: x.cls).cls
-nodes = [2,7,maxCls]
+nodes = [2,1,maxCls]
 
 #initializing neural network
 neuralNetwork = nn.NeuralNetwork(nodes, learningRate, useBiases, seed)
@@ -89,7 +82,6 @@ for i in range(len(trainData)):
     else: 
         ax2.scatter(trainData[i].x, trainData[i].y,color='green')
 plt.title("Błędy na zbiorze treningowym")
-# plt.show()
 
 plt.figure()
 plt.plot(range(1, len(errors)+1), errors)
